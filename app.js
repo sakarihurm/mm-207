@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const contentAPI = require('./contentAPI')
+app.use(contentAPI)
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
