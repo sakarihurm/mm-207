@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const fetchQuiz = require('./fetchUserQuiz')
+const fetchQuiz = require('./fetchQuiz')
 
 const userid = 1
 const loggedIn = true
 
-router.get('/content', (req, res) => {
+router.get('/quizzes', (req, res) => {
   if (!loggedIn) {
     return res.send('user not logged in')
   }
@@ -14,8 +14,8 @@ router.get('/content', (req, res) => {
 })
 
 // If user adds question to a quiz then it is posted to database
-router.post('/content', (req, res) => {
-  res.json({userid: 123, question: '1+1x0?'})
+router.post('/quizzes/:questionid', (req, res) => {
+  res.json({userid: 123, questionid: req.params.questionid})
   res.send('added question to quiz')
 })
 
