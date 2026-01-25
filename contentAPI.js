@@ -1,11 +1,16 @@
 const express = require('express')
 const router = express.Router()
- 
+const fetchQuiz = require('./fetchUserQuiz')
+
+const userid = 1
+const loggedIn = true
 
 router.get('/content', (req, res) => {
-  res.send('test content')
-
-  //TODO: code that fetches user's quiz if logged in
+  if (!loggedIn) {
+    return res.send('user not logged in')
+  }
+  const quiz = fetchQuiz(userid)
+  res.send(quiz)
 })
 
 // If user adds question to a quiz then it is posted to database
